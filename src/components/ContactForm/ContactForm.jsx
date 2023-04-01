@@ -4,7 +4,9 @@ import * as Yup from 'yup';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addContact, getContacts } from 'redux/contactsSlice';
+// import { addContact, getContacts } from 'redux/contactsSlice';
+import { addContact } from 'redux/actions';
+import { getContacts } from 'redux/selectors';
 
 import {
   StyledForm,
