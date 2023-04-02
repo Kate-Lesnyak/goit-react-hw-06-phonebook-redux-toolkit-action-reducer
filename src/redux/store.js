@@ -1,4 +1,4 @@
-// * 1 вариант
+// todo 1 вариант local state is [] and ''. With of combineReducers, persistReducer + storage
 // import { combineReducers, configureStore } from "@reduxjs/toolkit";
 // import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 // import storage from "redux-persist/lib/storage";
@@ -34,13 +34,39 @@
 
 // export const persistor = persistStore(store);
 
-// * 2 вариант
+
+// todo 2 вариант local state is [] and ''. Without of combineReducers, persistReducer + storage
+// import { configureStore } from "@reduxjs/toolkit";
+// import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+// import { filterReducer, persistedReducer } from "./reducers";
+
+// export const store = configureStore({
+//   reducer: {
+//     contacts: persistedReducer,
+//     filter: filterReducer,
+//   },
+//   middleware(getDefaultMiddleware) {
+//     return getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     });
+//   },
+// });
+
+// export const persistor = persistStore(store);
+
+
+// todo 3 вариант local state is {}. Without of combineReducers, persistReducer + storage
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-import { persistedReducer } from "./reducers";
+import { filterReducer, persistedContactsReducer } from "./reducers";
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    contacts: persistedContactsReducer,
+    filter: filterReducer,
+  },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {
